@@ -1,27 +1,11 @@
 <template>
-  <t-space direction="vertical">
-    <t-radio-group v-model="type" variant="default-filled">
-      <t-radio-button value="default"> 默认 </t-radio-button>
-      <t-radio-button value="function"> 自定义方法 </t-radio-button>  
-    </t-radio-group>
-    <t-tree-select
-      v-if="type === 'default'"
-      v-model="value"
-      :data="options"
-      clearable
-      filterable
-      multiple
-      placeholder="请选择"
-    />
-    <t-tree-select
-      v-else
-      v-model="value"
-      :data="options"
-      clearable
-      :filter="filterFunction"
-      placeholder="请选择"
-    />
-  </t-space>
+  <t-tree-select
+    :data="options"
+    clearable
+    filterable
+    multiple
+    placeholder="请选择"
+  />
 </template>
 <script setup>
 import { ref } from 'vue';
@@ -56,11 +40,4 @@ const options = [
     ],
   },
 ];
-
-const value = ref([]);
-const type = ref('default');
-
-const filterFunction = (searchText, node) => {
-  return node.data.label.indexOf(searchText) >= 0;
-};
 </script>
